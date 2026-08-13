@@ -8,12 +8,16 @@ import { AuthModule } from './auth/auth.module';
 import { SettingsController } from './settings/settings/settings.controller';
 import { SettingsService } from './settings/settings/settings.service';
 import { SettingsModule } from './settings/settings/settings.module';
+import { MasterController } from './master/master.controller';
+import { MasterService } from './master/master.service';
+import { MasterModule } from './master/master.module';
 
 @Module({
   imports: [
       MongooseModule.forRoot('mongodb://localhost:27017/CarParking'),
       AuthModule,
       SettingsModule,
+      MasterModule,
   ],
   controllers: [AppController],
   providers: [AppService],
