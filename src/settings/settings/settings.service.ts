@@ -120,32 +120,37 @@ export class SettingsService {
                          item => item.menuId === 1
                      )?.view ?? false,
 
-                     VehicleEntry: metaDetails.find(
+                     Master: metaDetails.find(
                          item => item.menuId === 2
                      )?.view ?? false,
 
-                     VehicleExit: metaDetails.find(
+
+                     VehicleEntry: metaDetails.find(
                          item => item.menuId === 3
                      )?.view ?? false,
 
-                     ParkingSlots: metaDetails.find(
+                     VehicleExit: metaDetails.find(
                          item => item.menuId === 4
                      )?.view ?? false,
 
-                     Customers: metaDetails.find(
+                     ParkingSlots: metaDetails.find(
                          item => item.menuId === 5
                      )?.view ?? false,
 
-                     Payments: metaDetails.find(
+                     Customers: metaDetails.find(
                          item => item.menuId === 6
                      )?.view ?? false,
 
-                     Reports: metaDetails.find(
+                     Payments: metaDetails.find(
                          item => item.menuId === 7
                      )?.view ?? false,
 
-                     Settings: metaDetails.find(
+                     Reports: metaDetails.find(
                          item => item.menuId === 8
+                     )?.view ?? false,
+
+                     Settings: metaDetails.find(
+                         item => item.menuId === 9
                      )?.view ?? false
                  };
 
@@ -188,8 +193,7 @@ export class SettingsService {
             permissionId: permissionId
         });
 
-        console.log('permissions',permissions);
-        console.log('permissionsmeta',permissionsmeta)
+
         return {
             permissions,
             permissionsmeta
@@ -243,39 +247,44 @@ export class SettingsService {
                         item => item.menuId === 1
                     )?.view ?? false,
 
-                VehicleEntry:
+                Master:
                     metaDetails.find(
                         item => item.menuId === 2
                     )?.view ?? false,
 
-                VehicleExit:
+                VehicleEntry:
                     metaDetails.find(
                         item => item.menuId === 3
                     )?.view ?? false,
 
-                ParkingSlots:
+                VehicleExit:
                     metaDetails.find(
                         item => item.menuId === 4
                     )?.view ?? false,
 
-                Customers:
+                ParkingSlots:
                     metaDetails.find(
                         item => item.menuId === 5
                     )?.view ?? false,
 
-                Payments:
+                Customers:
                     metaDetails.find(
                         item => item.menuId === 6
                     )?.view ?? false,
 
-                Reports:
+                Payments:
                     metaDetails.find(
                         item => item.menuId === 7
                     )?.view ?? false,
 
-                Settings:
+                Reports:
                     metaDetails.find(
                         item => item.menuId === 8
+                    )?.view ?? false,
+
+                Settings:
+                    metaDetails.find(
+                        item => item.menuId === 9
                     )?.view ?? false
 
             };

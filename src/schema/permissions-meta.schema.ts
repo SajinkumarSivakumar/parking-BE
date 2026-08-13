@@ -16,6 +16,9 @@ export class PermissionsMeta {
     Dashboard: boolean;
 
     @Prop({ required: true })
+    Master: boolean;
+
+    @Prop({ required: true })
     VehicleEntry: boolean;
 
     @Prop({ required: true })
