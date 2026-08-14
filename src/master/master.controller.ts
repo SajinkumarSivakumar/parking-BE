@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post, Req, Res} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, Put, Query, Req, Res} from '@nestjs/common';
 import {MasterService} from "./master.service";
 
 @Controller('master')
@@ -44,5 +44,37 @@ export class MasterController {
         }
     }
 
+
+
+    @Get('getBranchparticularInfo')
+    async getBranchparticularInfo(
+        @Query('id') id: string,
+        @Res() res
+    ) {
+
+        const branchInfo = await this.ms.getBranchparticularInfo(id);
+
+        if (!branchInfo) {
+            return res.status(404).send({
+                status: false,
+
+            });
+        }
+
+        return res.status(200).send({
+            status: true,
+            branchDetails: branchInfo
+        });
+
+    }
+
+
+    @Put('branch/:id')
+    async updateBranch(
+        @Param('id') id: string,
+        @Body() data: any,
+    ) {
+        return await this.ms.updateBranch(id, data);
+    }
 
 }
