@@ -77,4 +77,35 @@ export class MasterController {
         return await this.ms.updateBranch(id, data);
     }
 
+
+    // parking configurations
+
+    @Post('save/parkingConfiguration')
+    async saveParkingConfigurations(@Body() body,@Res() res) {
+
+        const saveParking = await this.ms.saveParking(body)
+        if(saveParking){
+            return res.status(200).send({
+                status: true,
+                msg: 'Save Parking Configuration',
+                parkingDetails: saveParking,
+            })
+        }
+    }
+
+
+
+    @Get('getAllParkingConfigDetails')
+    async fetchallParkingConfig(@Body() body: any, @Res() res) {
+
+        const fetchParkingInfo = await this.ms.fetchParkingInfo()
+        if(fetchParkingInfo){
+            return res.status(200).send({
+                status: true,
+                msg: 'Fetch Branch Info',
+                branchDetails: fetchParkingInfo,
+            });
+        }
+    }
+
 }

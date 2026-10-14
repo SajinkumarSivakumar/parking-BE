@@ -1,8 +1,10 @@
-import {Injectable, NotFoundException} from '@nestjs/common';
+import {Catch, Injectable, NotFoundException} from '@nestjs/common';
 import {InjectModel} from "@nestjs/mongoose";
 import {Branch} from "../schema/branch.schema";
 import {Model, Types} from "mongoose";
 import {Counter} from "../schema/counter.schema";
+import {PermissionMetaDocument} from "../schema/permissions-meta.schema";
+import {ParkingConfigurations} from "../schema/parkingConfigurations.schema";
 
 @Injectable()
 export class MasterService {
@@ -12,6 +14,8 @@ export class MasterService {
         private readonly branchModel:Model<Branch>,
         @InjectModel(Counter.name)
         private readonly counterModel: Model<Counter>,
+        @InjectModel(ParkingConfigurations.name)
+        private readonly ParkingConfiguartionsModel: Model<ParkingConfigurations>,
     ) {
     }
 
@@ -99,5 +103,33 @@ export class MasterService {
         } catch (error) {
             throw error;
         }
+    }
+
+
+    async saveParking(data){
+     try{
+
+         const saveParking = new this.ParkingConfiguartionsModel({
+             branch:data.branch,
+             parkingName:data.parkingName,
+             parkingType:data.parkingType,
+             totalFloors:data.totalFloors,
+             totalCapacity:data.totalCapacity,
+             status:data.status,
+             city:data.city,
+             address:data.address,
+         });
+         const result = await saveParking.save();
+         return result;
+
+     }catch(error){
+         console.error(error);
+         throw error;
+     }
+    }
+
+
+    async fetchParkingInfo()    {
+        return this.ParkingConfiguartionsModel.find()
     }
 }
