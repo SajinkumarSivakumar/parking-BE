@@ -132,4 +132,59 @@ export class MasterService {
     async fetchParkingInfo()    {
         return this.ParkingConfiguartionsModel.find()
     }
+
+
+
+
+    async getPatchparkingConfigurations(id: string) {
+        const result = await this.ParkingConfiguartionsModel.findOne({
+            _id: id
+        }).exec();
+
+
+
+        return result;
+    }
+
+
+
+
+    async updateparkingConfiguration(id: string, data: any) {
+        try {
+
+            const parkingConfiguration = await this.ParkingConfiguartionsModel.findByIdAndUpdate(
+                id,
+                {
+                    $set: {
+                        branch: data.branch,
+                        parkingName: data.parkingName,
+                        parkingType: data.parkingType,
+                        totalFloors: data.totalFloors,
+                        totalCapacity: data.totalCapacity,
+                        status: data.status,
+                        city: data.city,
+                        address: data.address,
+                    },
+                },
+                {
+                    new: true,
+                    runValidators: true,
+                },
+            );
+
+            if (!parkingConfiguration) {
+                throw new NotFoundException('Parking Configuration not found');
+            }
+
+            return {
+                message: 'Parking Configuration updated successfully',
+                parkingConfiguration,
+            };
+
+        } catch (error) {
+            throw error;
+        }
+    }
+
+
 }

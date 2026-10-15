@@ -108,4 +108,21 @@ export class MasterController {
         }
     }
 
+    @Get('getPatchParkingDetails')
+    async getAllParkingConfigDetail(@Query('id') id: string)
+    {
+        return await this.ms.getPatchparkingConfigurations(id);
+    }
+
+
+
+    @Put('update/parkingConfiguration/:id')
+    async updateparkingConfiguration(
+        @Param('id') id: string,
+        @Body() data: any,
+    ) {
+
+        return await this.ms.updateparkingConfiguration(id, data);
+    }
+
 }
